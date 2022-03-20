@@ -8,7 +8,7 @@ const char delima = 165;
 
 int main(int argc, char **argv)
 {
-	stm32_reader stm32("/dev/ttyUSB5", 9600, size, delima);
+	stm32_reader stm32("/dev/ttyUSB0", 9600, size, delima);
 
 	ros::init(argc, argv, "stm32");
 	ros::NodeHandle node;

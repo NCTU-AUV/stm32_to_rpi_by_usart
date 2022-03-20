@@ -25,6 +25,6 @@ float stm32_reader::convert(int start_byte)
 void  stm32_reader::update()
 {
 	Serial_reader::read_data_tail();
-	num = convert(start_of_num);
+	num = convert(start_of_num) - 0.0002;
     std::cout<<"stm32_reader.cpp: "<<num<<std::endl;
 }	
