@@ -14,9 +14,9 @@ int main ()
 {
   float receieved_num[100] ={0.0};
 
-  if ((serial_port = serialOpen ("/dev/ttyS0", 9600)) < 0)	/* open serial port */
+  if ((serial_port = serialOpen ("/dev/ttyS0", 115200)) < 0)	/* open serial port */
   {
-    fprintf (stderr, "Unable to open serial device: %s\n", strerror (errno)) ;
+    fprintf (stderr, "Unable to open serial device !: %s\n", strerror (errno)) ;
     return 1 ;
   }
 
@@ -26,20 +26,20 @@ int main ()
     return 1 ;
   }
 
+  deliver();
   while(1)
   {
-    fprintf (stdout,"1:\n");
-    deliver(); //send data to stm32
-    fprintf (stdout,"2:\n");
-    if(serialGetchar (serial_port) == '\n')
-    {
-      fprintf (stdout,"3:\n");
-      for(int i=0;i<100;i++)
-      {
-        receieved_num[i] = receive();
-        fprintf (stdout,"received: %f\n", receieved_num[i]);
-      }
-    }
+  //  deliver(); //send data to stm32
+    // if(serialGetchar (serial_port) == '\n')
+    // {
+    //   fprintf (stdout,"3:\n");
+    //   for(int i=0;i<100;i++)
+    //   {
+    //     receieved_num[i] = receive();
+    //     fprintf (stdout,"received: %f\n", receieved_num[i]);
+    //   }
+    // }
+
 	}
 }
 
@@ -52,9 +52,9 @@ void deliver()
 
   serialPutchar (serial_port, delim) ;
 
-  for(i=0;i<100;i++)
+  for(i=1;i<29;i++)
       {
-        deliverd_num = 1.0 * i;
+        deliverd_num = 1.0*i;
 
         char *ch =  ( ( ( char * )( & deliverd_num ) ) );
         for(j=0;j<4;j++)
@@ -62,6 +62,7 @@ void deliver()
           serialPutchar (serial_port, *ch) ;
           ch++;
         }
+        fprintf (stdout,"data: %f\n", deliverd_num);
       }
 }
 

@@ -126,6 +126,12 @@ target_link_libraries(stm32_to_rpi_by_usart ${catkin_LIBRARIES} -lwiringPi)
 
 add_executable(zhc src/test.cpp)
 target_link_libraries(zhc ${catkin_LIBRARIES} -lwiringPi)
+
+add_executable(deliver_to_stm src/deliver_to_stm.cpp)
+target_link_libraries(deliver_to_stm ${catkin_LIBRARIES} -lwiringPi)
+
+add_executable(publish src/publish.cpp)
+target_link_libraries(publish ${catkin_LIBRARIES})
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/stm32_to_rpi_by_usart.cpp
